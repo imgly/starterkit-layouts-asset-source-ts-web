@@ -42,9 +42,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // Load the custom layouts scene with pre-designed content
-    await cesdk.loadFromURL(
-      resolveAssetPath('/assets/custom-layouts.scene')
-    );
+    await cesdk.loadFromURL(resolveAssetPath('/assets/custom-layouts.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
