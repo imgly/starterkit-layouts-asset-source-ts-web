@@ -9,7 +9,7 @@
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import { initLayoutsEditor } from './imgly';
+import { initLayoutsAssetSource } from './imgly';
 import { resolveAssetPath } from './imgly/resolveAssetPath';
 
 // ============================================================================
@@ -36,15 +36,13 @@ CreativeEditorSDK.create('#cesdk_container', config)
     (window as any).cesdk = cesdk;
 
     // Initialize the editor with layouts functionality
-    await initLayoutsEditor(cesdk);
+    await initLayoutsAssetSource(cesdk);
     // ============================================================================
     // Scene Loading
     // ============================================================================
 
     // Load the custom layouts scene with pre-designed content
-    await cesdk.loadFromURL(
-      resolveAssetPath('/assets/custom-layouts.scene')
-    );
+    await cesdk.loadFromURL(resolveAssetPath('/assets/custom-layouts.scene'));
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
