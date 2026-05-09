@@ -1,8 +1,8 @@
 /**
  * CE.SDK Layouts Editor Starterkit - Main Entry Point
  *
- * A design editor with pre-designed layout templates that can be applied to pages.
- * Users can choose from various layouts and apply them dynamically while preserving content.
+ * A design editor with pre-designed layout templates for creating graphics,
+ * collages, and multi-page documents with consistent layouts.
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
@@ -17,13 +17,12 @@ import { resolveAssetPath } from './imgly/resolveAssetPath';
 // ============================================================================
 
 const config = {
-  userId: 'starterkit-layouts-asset-source-user'
+  userId: 'starterkit-layouts-asset-source-user',
 
-  // Local assets
-  // baseURL: `/assets/`,
+  // IMG.LY CDN (for quick testing only, NOT recommended for production)
 
-  // License key (required for production)
-  // license: 'YOUR_LICENSE_KEY',
+  // Local assets for development
+
 };
 
 // ============================================================================
@@ -35,7 +34,6 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // Debug access (remove in production)
     (window as any).cesdk = cesdk;
 
-    // Initialize the editor with layouts functionality
     await initLayoutsAssetSource(cesdk);
     // ============================================================================
     // Scene Loading
