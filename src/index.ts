@@ -9,8 +9,7 @@
 
 import CreativeEditorSDK from '@cesdk/cesdk-js';
 
-import { initLayoutsAssetSource } from './imgly';
-import { resolveAssetPath } from './imgly/resolveAssetPath';
+import { DEMO_ASSETS_BASE_URL, initLayoutsAssetSource } from './imgly';
 
 // ============================================================================
 // Configuration
@@ -40,7 +39,9 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // Load the custom layouts scene with pre-designed content
-    await cesdk.loadFromURL(resolveAssetPath('/assets/custom-layouts.scene'));
+    await cesdk.load(
+      `${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`
+    );
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
