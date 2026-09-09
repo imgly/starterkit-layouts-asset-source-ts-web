@@ -11,6 +11,7 @@ import CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import { DEMO_ASSETS_BASE_URL, initLayoutsAssetSource } from './imgly';
 
+
 // ============================================================================
 // Configuration
 // ============================================================================
