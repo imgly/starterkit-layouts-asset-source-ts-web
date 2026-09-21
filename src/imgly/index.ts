@@ -9,7 +9,7 @@
  * - Apply layouts to existing pages while preserving content
  * - Swap between different layouts dynamically
  *
- * @see https://img.ly/docs/cesdk/js/getting-started/
+ * @see https://img.ly/docs/cesdk/js/get-started/overview-e18f40/
  */
 
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
@@ -33,14 +33,19 @@ import {
 
 // Configuration plugin
 import { DesignEditorConfig } from './config/plugin';
-import { resolveAssetPath } from './resolveAssetPath';
 
 // Layouts plugin
-import { LayoutsAssetSourcePlugin } from './plugins/layouts/layout';
+import {
+  DEMO_ASSETS_BASE_URL,
+  LayoutsAssetSourcePlugin
+} from './plugins/layouts/layout';
 
 // Re-export for external use
 export { DesignEditorConfig } from './config/plugin';
-export { LayoutsAssetSourcePlugin } from './plugins/layouts/layout';
+export {
+  DEMO_ASSETS_BASE_URL,
+  LayoutsAssetSourcePlugin
+} from './plugins/layouts/layout';
 export type { LayoutsAssetSourcePluginOptions } from './plugins/layouts/layout';
 
 /**
@@ -79,52 +84,54 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
   // Asset source plugins provide built-in asset libraries
 
   // Blur presets for blur effects
-  await cesdk.addPlugin(new BlurAssetSource());
+  await Promise.all([
+    cesdk.addPlugin(new BlurAssetSource()),
 
-  // Color palettes for design
-  await cesdk.addPlugin(new ImageColorsAssetSource());
-  await cesdk.addPlugin(new ColorPaletteAssetSource());
+    // Color palettes for design
+    cesdk.addPlugin(new ImageColorsAssetSource()),
+    cesdk.addPlugin(new ColorPaletteAssetSource()),
 
-  // Crop presets (aspect ratios)
-  await cesdk.addPlugin(new CropPresetsAssetSource());
+    // Crop presets (aspect ratios)
+    cesdk.addPlugin(new CropPresetsAssetSource()),
 
-  // Local upload sources (images)
-  await cesdk.addPlugin(
-    new UploadAssetSources({
-      include: ['ly.img.image.upload']
-    })
-  );
+    // Local upload sources (images)
+    cesdk.addPlugin(
+      new UploadAssetSources({
+        include: ['ly.img.image.upload']
+      })
+    ),
 
-  // Demo assets (templates, images)
-  await cesdk.addPlugin(
-    new DemoAssetSources({
-      include: ['ly.img.image.*', 'ly.img.templates.*']
-    })
-  );
+    // Demo assets (templates, images)
+    cesdk.addPlugin(
+      new DemoAssetSources({
+        include: ['ly.img.image.*', 'ly.img.templates.*']
+      })
+    ),
 
-  // Visual effects (adjustments, vignette, etc.)
-  await cesdk.addPlugin(new EffectsAssetSource());
+    // Visual effects (adjustments, vignette, etc.)
+    cesdk.addPlugin(new EffectsAssetSource()),
 
-  // Photo filters (LUT, duotone)
-  await cesdk.addPlugin(new FiltersAssetSource());
+    // Photo filters (LUT, duotone)
+    cesdk.addPlugin(new FiltersAssetSource()),
 
-  // Page format presets (A4, Letter, social media sizes)
-  await cesdk.addPlugin(new PagePresetsAssetSource());
+    // Page format presets (A4, Letter, social media sizes)
+    cesdk.addPlugin(new PagePresetsAssetSource()),
 
-  // Sticker assets
-  await cesdk.addPlugin(new StickerAssetSource());
+    // Sticker assets
+    cesdk.addPlugin(new StickerAssetSource()),
 
-  // Text presets (headlines, body text styles)
-  await cesdk.addPlugin(new TextAssetSource());
+    // Text presets (headlines, body text styles)
+    cesdk.addPlugin(new TextAssetSource()),
 
-  // Text components (pre-designed text layouts)
-  await cesdk.addPlugin(new TextComponentAssetSource());
+    // Text components (pre-designed text layouts)
+    cesdk.addPlugin(new TextComponentAssetSource()),
 
-  // Typeface/font assets
-  await cesdk.addPlugin(new TypefaceAssetSource());
+    // Typeface/font assets
+    cesdk.addPlugin(new TypefaceAssetSource()),
 
-  // Vector shapes (rectangles, circles, arrows, etc.)
-  await cesdk.addPlugin(new VectorShapeAssetSource());
+    // Vector shapes (rectangles, circles, arrows, etc.)
+    cesdk.addPlugin(new VectorShapeAssetSource())
+  ]);
 
   // ============================================================================
   // Layouts Plugin
@@ -134,7 +141,7 @@ export async function initLayoutsAssetSource(cesdk: CreativeEditorSDK) {
   // This provides pre-designed layout templates that can be applied to pages
   await cesdk.addPlugin(
     new LayoutsAssetSourcePlugin({
-      baseURL: resolveAssetPath('/assets')
+      baseURL: `${DEMO_ASSETS_BASE_URL}/assets`
     })
   );
 
