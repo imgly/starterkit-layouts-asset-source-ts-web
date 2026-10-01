@@ -31,8 +31,6 @@ const config = {
 
 CreativeEditorSDK.create('#cesdk_container', config)
   .then(async (cesdk) => {
-    // Debug access (remove in production)
-    (window as any).cesdk = cesdk;
 
     await initLayoutsAssetSource(cesdk);
     // ============================================================================
@@ -40,9 +38,7 @@ CreativeEditorSDK.create('#cesdk_container', config)
     // ============================================================================
 
     // Load the custom layouts scene with pre-designed content
-    await cesdk.load(
-      `${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`
-    );
+    await cesdk.load(`${DEMO_ASSETS_BASE_URL}/assets/custom-layouts.scene`);
   })
   .catch((error) => {
     // eslint-disable-next-line no-console
