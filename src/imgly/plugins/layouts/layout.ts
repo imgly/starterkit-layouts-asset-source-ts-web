@@ -147,7 +147,7 @@ export class LayoutsAssetSourcePlugin implements EditorPlugin {
         id: 'ly.img.assetLibrary.dock',
         key: LAYOUTS_SOURCE_ID,
         label: 'libraries.ly.img.layouts.label',
-        icon: ({ iconSize }) =>
+        icon: ({ iconSize }: { iconSize: 'normal' | 'large' }) =>
           iconSize === 'normal'
             ? `${DEMO_ASSETS_BASE_URL}/assets/collage-small.svg`
             : `${DEMO_ASSETS_BASE_URL}/assets/collage-large.svg`,
