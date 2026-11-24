@@ -38,8 +38,8 @@ export async function applyLayoutToPage(
       .forEach((block) => engine.block.setSelected(block, false));
 
     // Load the layout scene
-    const sceneString = await fetch(asset.meta.uri as string).then((response) =>
-      response.text()
+    const sceneString = await fetch(asset.meta!.uri as string).then(
+      (response) => response.text()
     );
     const blocks = await engine.block.loadFromString(sceneString);
     layoutPage = blocks[0];
@@ -118,8 +118,8 @@ function copyAssets(
     index < textsOnToPage.length && index < textsOnFromPage.length;
     index++
   ) {
-    const fromBlock = textsOnFromPage[index];
-    const toBlock = textsOnToPage[index];
+    const fromBlock = textsOnFromPage[index]!;
+    const toBlock = textsOnToPage[index]!;
     const fromText = engine.block.getString(fromBlock, 'text/text');
     const fromFontFileUri = engine.block.getString(
       fromBlock,
@@ -147,8 +147,8 @@ function copyAssets(
     index < imagesOnToPage.length && index < imagesOnFromPage.length;
     index++
   ) {
-    const fromBlock = imagesOnFromPage[index];
-    const toBlock = imagesOnToPage[index];
+    const fromBlock = imagesOnFromPage[index]!;
+    const toBlock = imagesOnToPage[index]!;
     const fromImageFill = engine.block.getFill(fromBlock);
     const toImageFill = engine.block.getFill(toBlock);
     const fromImageFileUri = engine.block.getString(
